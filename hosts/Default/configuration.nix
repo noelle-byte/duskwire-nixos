@@ -28,7 +28,7 @@ in
     # ../../modules/core/syncthing.nix
     # ../../modules/core/jellyfin.nix
     # ../../modules/core/dlna.nix
-    # ../../modules/core/flatpak.nix
+    ../../modules/core/flatpak.nix
     # ../../modules/core/virtualisation.nix
 
     # Optional
@@ -44,15 +44,15 @@ in
     ../../modules/programs/cli/lazygit
     ../../modules/programs/cli/btop
     # ../../modules/programs/cli/cava
-    # ../../modules/programs/cli/fastfetch
+    ../../modules/programs/cli/fastfetch
     # ../../modules/programs/media/discord
-    # ../../modules/programs/media/spicetify
+    ../../modules/programs/media/spicetify
     # ../../modules/programs/media/youtube-music
     # ../../modules/programs/media/thunderbird
     # ../../modules/programs/media/obs-studio
     ../../modules/programs/media/mpv
     ../../modules/programs/misc/tlp
-    # ../../modules/programs/misc/lact # GPU fan, clock and power configuration
+    ../../modules/programs/misc/lact # GPU fan, clock and power configuration
   ]
   ++ lib.optional (vars.games == true) ../../modules/core/games.nix;
 }

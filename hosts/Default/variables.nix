@@ -1,5 +1,5 @@
 {
-  username = "railgun"; # auto-set with install.sh, live-install.sh, and rebuild scripts.
+  username = "noelle"; # auto-set with install.sh, live-install.sh, and rebuild scripts.
 
   # Desktop Environment
   desktop = "hyprland"; # hyprland, i3, gnome, plasma6
@@ -13,18 +13,18 @@
 
   # Default Applications
   terminal = "kitty"; # kitty, alacritty, wezterm
-  editor = "nixvim"; # nixvim, vscode, helix, doom-emacs, nvchad, neovim
+  editor = "vscode"; # nixvim, vscode, helix, doom-emacs, nvchad, neovim
   browser = "zen-beta"; # zen-beta, firefox, floorp
   fileManager = "thunar"; # yazi, lf, thunar
   shell = "zsh"; # bash, zsh
-  games = false; # Enable/Disable gaming module
+  games = true; # Enable/Disable gaming module
 
   # Hardware
-  hostname = "nixos";
-  videoDriver = "nvidia"; # nvidia, amdgpu, intel
-  nvidiaChannel = "legacy_580"; # stable, latest, beta, legacy_xxx
-  bluetoothSupport = false; # Whether your motherboard supports bluetooth
-  batterySupport = false; # Whether device has a battery (laptop)
+  hostname = "LaptopOfDreams";
+  videoDriver = "amdgpu"; # nvidia, amdgpu, intel
+  nvidiaChannel = "stable"; # stable, latest, beta, legacy_xxx
+  bluetoothSupport = true; # Whether your motherboard supports bluetooth
+  batterySupport = true; # Whether device has a battery (laptop)
 
   # Localization
   timezone = "Europe/London";
