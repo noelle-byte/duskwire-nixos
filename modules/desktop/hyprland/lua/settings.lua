@@ -35,8 +35,8 @@ end)
 hl.config({
 	input = (function()
 		local t = {
-			kb_layout = kbdLayout .. ",ru",
-			kb_variant = kbdVariant .. ",",
+			kb_layout = kbdLayout,
+			kb_variant = kbdVariant,
 			repeat_delay = 275,
 			repeat_rate = 35,
 			numlock_by_default = true,
@@ -44,14 +44,14 @@ hl.config({
 			follow_mouse = 1,
 
 			touchpad = {
-				natural_scroll = false,
+				natural_scroll = true,
 			},
 
 			tablet = {
 				output = "current",
 			},
 
-			sensitivity = 0,
+			sensitivity = -0.5,
 			force_no_accel = true,
 		}
 
