@@ -14,7 +14,7 @@
   # Default Applications
   terminal = "kitty"; # kitty, alacritty, wezterm
   editor = "vscode"; # nixvim, vscode, helix, doom-emacs, nvchad, neovim
-  browser = "zen-beta"; # zen-beta, firefox, floorp
+  browser = "firefox"; # zen-beta, firefox, floorp
   fileManager = "thunar"; # yazi, lf, thunar
   shell = "zsh"; # bash, zsh
   games = true; # Enable/Disable gaming module

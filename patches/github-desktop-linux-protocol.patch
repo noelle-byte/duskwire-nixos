@@ -1,0 +1,30 @@
+--- a/app/src/main-process/main.ts
++++ b/app/src/main-process/main.ts
+@@
+ async function handleCommandLineArguments(argv: string[]) {
+   const args = parseCommandLineArgs(argv, {
+     boolean: ['protocol-launcher'],
+   })
+ 
++  // Linux desktop environments pass protocol URLs as command-line arguments.
++  if (!__DARWIN__ && !__WIN32__) {
++    const prefixes = Array.from(possibleProtocols, p => `${p}://`)
++    const matchingUrl = argv.find(arg => {
++      if (prefixes.some(p => arg.startsWith(p))) {
++        try {
++          new URL(arg)
++          return true
++        } catch (e) {
++          log.error(`Unable to parse argument as URL: ${arg}`)
++        }
++      }
++      return false
++    })
++
++    if (matchingUrl) {
++      handleAppURL(matchingUrl)
++      return
++    }
++  }
++
+   // Desktop registers it's protocol handler callback on Windows as

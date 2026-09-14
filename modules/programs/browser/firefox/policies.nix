@@ -9,7 +9,7 @@ in
   AutofillCreditCardEnabled = false;
   AutoLaunchProtocolsFromOrigins = [
     {
-      protocol = "x-github-desktop-auth";
+      protocol = "x-github-desktop-dev-auth";
       allowed_origins = [
         "https://github.com"
       ];
