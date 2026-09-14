@@ -7,7 +7,20 @@ in
   AppAutoUpdate = false;
   AutofillAddressEnabled = false;
   AutofillCreditCardEnabled = false;
-  #AutoLaunchProtocolsFromOrigins = { };
+  AutoLaunchProtocolsFromOrigins = [
+    {
+      protocol = "x-github-desktop-auth";
+      allowed_origins = [
+        "https://github.com"
+      ];
+    }
+    {
+      protocol = "x-github-client";
+      allowed_origins = [
+        "https://github.com"
+      ];
+    }
+  ];
   BackgroundAppUpdate = false;
   BlockAboutAddons = false;
   BlockAboutConfig = false;
