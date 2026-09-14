@@ -1,6 +1,7 @@
+diff --git a/app/src/main-process/main.ts b/app/src/main-process/main.ts
 --- a/app/src/main-process/main.ts
 +++ b/app/src/main-process/main.ts
-@@
+@@ -1,7 +1,28 @@
  async function handleCommandLineArguments(argv: string[]) {
    const args = parseCommandLineArgs(argv, {
      boolean: ['protocol-launcher'],
