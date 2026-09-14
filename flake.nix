@@ -102,9 +102,13 @@
     in
     {
       templates = import ./dev-shells;
-      formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.nixfmt-tree);
+
+      formatter = forAllSystems (
+        system: nixpkgs.legacyPackages.${system}.nixfmt-tree
+      );
+
       nixosConfigurations = {
-        Default = mkHost "Default";
+        LaptopOfDreams = mkHost "LaptopOfDreams";
         Singularity = mkHost "Singularity";
       };
     };

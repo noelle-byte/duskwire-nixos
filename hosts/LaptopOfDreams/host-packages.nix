@@ -1,11 +1,11 @@
 { pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
-    # obsidian
+    obsidian
     # ludusavi
-    # godot
-    # proton-vpn
-    # github-desktop
+    godot
+    proton-vpn
+    github-desktop
     # pokego # Overlayed
   ];
 }
