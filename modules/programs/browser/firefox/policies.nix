@@ -7,20 +7,7 @@ in
   AppAutoUpdate = false;
   AutofillAddressEnabled = false;
   AutofillCreditCardEnabled = false;
-  AutoLaunchProtocolsFromOrigins = [
-    {
-      protocol = "x-github-desktop-dev-auth";
-      allowed_origins = [
-        "https://github.com"
-      ];
-    }
-    {
-      protocol = "x-github-client";
-      allowed_origins = [
-        "https://github.com"
-      ];
-    }
-  ];
+  #AutoLaunchProtocolsFromOrigins = { };
   BackgroundAppUpdate = false;
   BlockAboutAddons = false;
   BlockAboutConfig = false;
@@ -28,10 +15,10 @@ in
   BlockAboutSupport = false;
   #Containers = { };
   DisableAppUpdate = true;
-  DisableFirefoxAccounts = true;
+  DisableFirefoxAccounts = false;
   DisableFirefoxScreenshots = true;
   DisableFirefoxStudies = true;
-  DisableFormHistory = true;
+  DisableFormHistory = false;
   DisableMasterPasswordCreation = true;
   DisablePocket = true;
   DisablePrivateBrowsing = false;
@@ -55,7 +42,7 @@ in
   };
   ExtensionUpdate = true;
   FirefoxHome = {
-    Search = false;
+    Search = true;
     TopSites = false;
     SponsoredTopSites = false;
     Highlights = false;
@@ -68,7 +55,7 @@ in
   ManualAppUpdateOnly = true;
   NoDefaultBookmarks = false;
   OfferToSaveLogins = false;
-  PasswordManagerEnabled = false;
+  PasswordManagerEnabled = true;
   PictureInPicture = {
     Enabled = true;
   };

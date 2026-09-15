@@ -6,6 +6,7 @@
     godot
     proton-vpn
     github-desktop
+    gh
     # pokego # Overlayed
   ];
 }

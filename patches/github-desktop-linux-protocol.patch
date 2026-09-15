@@ -1,9 +1,6 @@
-diff --git a/app/src/main-process/main.ts b/app/src/main-process/main.ts
 --- a/app/src/main-process/main.ts
 +++ b/app/src/main-process/main.ts
-@@ -1,7 +1,28 @@
- async function handleCommandLineArguments(argv: string[]) {
-   const args = parseCommandLineArgs(argv, {
+@@ -240,6 +240,27 @@
      boolean: ['protocol-launcher'],
    })
  
@@ -29,3 +26,5 @@ diff --git a/app/src/main-process/main.ts b/app/src/main-process/main.ts
 +  }
 +
    // Desktop registers it's protocol handler callback on Windows as
+   // `[executable path] --protocol-launcher "%1"`. Note that extra command
+   // line arguments might be added by Chromium
