@@ -109,7 +109,7 @@
 
       nixosConfigurations = {
         LaptopOfDreams = mkHost "LaptopOfDreams";
-        Singularity = mkHost "Singularity";
+        DesktopOfNightmares = mkHost "DesktopOfNightmares";
       };
     };
 }
