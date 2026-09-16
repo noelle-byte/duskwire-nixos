@@ -54,7 +54,7 @@ in
   HardwareAcceleration = true;
   ManualAppUpdateOnly = true;
   NoDefaultBookmarks = false;
-  OfferToSaveLogins = false;
+  OfferToSaveLogins = true;
   PasswordManagerEnabled = true;
   PictureInPicture = {
     Enabled = true;
