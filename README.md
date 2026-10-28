@@ -1,6 +1,6 @@
 # Duskwire
 
-Noelle's personal NixOS configuration for a desktop and laptop, built around
+My personal NixOS configuration for a desktop and laptop, built around
 Hyprland, a dark desktop, gaming, and everyday creative and development work.
 
 Duskwire started from [Sly-Harvey's NixOS configuration](https://github.com/Sly-Harvey/NixOS)
