@@ -22,7 +22,7 @@
   # Hardware
   hostname = "DesktopOfNightmares";
   videoDriver = "nvidia"; # nvidia, amdgpu, intel
-  nvidiaChannel = "stable"; # stable, latest, beta, legacy_xxx
+  nvidiaChannel = "latest"; # stable, latest, beta, legacy_xxx
   bluetoothSupport = false; # Whether your motherboard supports bluetooth
   batterySupport = false; # Whether device has a battery (laptop)
 

@@ -6,6 +6,9 @@
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.11";
     nix-flatpak.url = "github:gmodena/nix-flatpak?ref=latest";
     hyprland.url = "github:hyprwm/Hyprland";
+
+    chatgpt-nixpkgs.url = "github:Moraxyc/nixpkgs/chatgpt-linux";
+    
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -84,8 +87,7 @@
       mkHost =
         host:
         nixpkgs.lib.nixosSystem {
-          # inherit system;
-          system = forAllSystems (system: system);
+          # Each host hardware configuration defines nixpkgs.hostPlatform.
           modules = [
             ./hosts/${host}/configuration.nix
           ];
@@ -110,6 +112,7 @@
       nixosConfigurations = {
         LaptopOfDreams = mkHost "LaptopOfDreams";
         DesktopOfNightmares = mkHost "DesktopOfNightmares";
+        DesktopOfDread = mkHost "DesktopOfDread";
       };
     };
 }

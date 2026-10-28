@@ -319,3 +319,12 @@ hl.window_rule({
 	match = { class = "^(eog)$" },
 	float = true,
 })
+
+hl.window_rule({
+  name = "blacksmith",
+  match = {
+    class = "^steam_app_4011065973$",
+  },
+  float = true,
+  center = true,
+})

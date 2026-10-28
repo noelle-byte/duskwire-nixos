@@ -69,8 +69,14 @@
     # ytmdl # Tool For Downloading Audio From YouTube
 
 
+    qbittorrent
+    audacity
+    winetricks
+    protontricks
+    flatpak
     inkscape
     krita
     firefox
+    vesktop
   ];
 }

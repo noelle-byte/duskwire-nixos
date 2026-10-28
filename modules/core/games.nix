@@ -16,15 +16,15 @@
     enable32Bit = true;
   };
   environment.systemPackages = with pkgs; [
-    # lutris
-    # heroic
+    lutris
     stable.bottles
-    # ryujinx
-    # prismlauncher
-
+    samba
     steam-run
     wineWow64Packages.staging
     gamescope
+  ];
+  programs.steam.extraPackages = with pkgs; [
+    samba
   ];
   programs = {
     gamemode.enable = true;

@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 {
   boot = {
     # Filesystems support
@@ -10,7 +10,7 @@
       "btrfs"
     ];
     tmp.cleanOnBoot = true;
-    kernelPackages = pkgs.linuxPackages_latest; # _latest, _zen, _xanmod_latest, _hardened, _rt, _OTHER_CHANNEL, etc.
+    kernelPackages = lib.mkDefault pkgs.linuxPackages_latest; # _latest, _zen, _xanmod_latest, _hardened, _rt, _OTHER_CHANNEL, etc.
     kernelParams = [
       "preempt=full" # lower latency but less throughput
     ];
