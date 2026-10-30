@@ -1,0 +1,58 @@
+name: Configuration checks
+
+on:
+  pull_request:
+  push:
+    branches: [master]
+
+permissions:
+  contents: read
+
+jobs:
+  static:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: cachix/install-nix-action@75c75c31ebece974e48ebc36b4ad125bd97bd97b # v31
+      - name: Parse Nix and installer sources
+        shell: bash
+        run: |
+          set -euo pipefail
+          while IFS= read -r -d '' file; do
+            nix-instantiate --parse "$file" >/dev/null
+          done < <(git ls-files -z '*.nix')
+          bash -n install.sh live-install.sh
+      - name: Check development template paths
+        run: |
+          nix-instantiate --eval --strict --expr '
+            let templates = import ./dev-shells;
+            in assert builtins.all (name: builtins.pathExists templates.${name}.path)
+              (builtins.attrNames templates); true'
+  hosts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        host: [DesktopOfNightmares, LaptopOfDreams]
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: cachix/install-nix-action@75c75c31ebece974e48ebc36b4ad125bd97bd97b # v31
+      - name: Evaluate system derivation without building
+        run: nix eval --no-update-lock-file --no-write-lock-file --raw '.#nixosConfigurations.${{ matrix.host }}.config.system.build.toplevel.drvPath'
+  dread-preparation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: cachix/install-nix-action@75c75c31ebece974e48ebc36b4ad125bd97bd97b # v31
+      - name: Evaluate Dread module selection
+        run: |
+          test "$(nix eval --no-update-lock-file --no-write-lock-file --raw .#nixosConfigurations.DesktopOfDread.config.networking.hostName)" = DesktopOfDread
+      - name: Require the deliberate hardware placeholder guard
+        run: |
+          nix-instantiate --eval --strict --expr '
+            let hardware = import ./hosts/DesktopOfDread/hardware-configuration.nix { lib.mkDefault = x: x; };
+            in assert builtins.any (a: a.assertion == false)
+              (hardware.assertions or []); true'
