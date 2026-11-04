@@ -8,6 +8,11 @@
     hyprland.url = "github:hyprwm/Hyprland";
 
     chatgpt-nixpkgs.url = "github:Moraxyc/nixpkgs/chatgpt-linux";
+
+    glaumar_repo = {
+      url = "github:glaumar/nur";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     
     home-manager = {
       url = "github:nix-community/home-manager";
