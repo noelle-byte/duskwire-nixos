@@ -9,6 +9,7 @@
 let
   inherit (lib) optional;
   inherit (import ../../../hosts/${host}/variables.nix) bar;
+  hostMonitors = ../../../hosts/${host}/monitors.lua;
 in
 {
   imports = [
@@ -88,7 +89,8 @@ in
       # Hyprland config
       xdg.configFile = {
         "hypr/hyprland.lua".source = ./lua/hyprland.lua;
-        "hypr/monitors.lua".source = ./lua/monitors.lua;
+        "hypr/monitors.lua".source =
+          if builtins.pathExists hostMonitors then hostMonitors else ./lua/monitors.lua;
         "hypr/settings.lua".source = ./lua/settings.lua;
         "hypr/animations.lua".source = ./lua/animations.lua;
         "hypr/binds.lua".source = ./lua/binds.lua;
