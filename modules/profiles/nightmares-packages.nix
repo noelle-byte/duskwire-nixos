@@ -6,8 +6,7 @@ let
     config.allowUnfree = true;
   };
 
-  qrookie = inputs.glaumar_repo.packages.${pkgs.stdenv.hostPlatform.system}.qrookie;
-in
+  in
 {
   environment.systemPackages =
     (with pkgs; [
@@ -22,6 +21,5 @@ in
     ])
     ++ [
       chatgptPkgs.chatgpt
-      qrookie
     ];
 }

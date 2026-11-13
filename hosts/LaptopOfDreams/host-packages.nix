@@ -18,7 +18,6 @@ in
       # pokego # Overlayed
     ])
     ++ [
-      inputs.glaumar_repo.packages.${pkgs.stdenv.hostPlatform.system}.qrookie
       chatgptPkgs.chatgpt
     ];
 }

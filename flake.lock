@@ -231,26 +231,6 @@
         "type": "github"
       }
     },
-    "glaumar_repo": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1737428919,
-        "narHash": "sha256-uywQK2tlqk12fznVJHJrYnYT90lv3oiS8fqdBxoJJJM=",
-        "owner": "glaumar",
-        "repo": "nur",
-        "rev": "84d56f9f26afcb07620c1e126673d033338406de",
-        "type": "github"
-      },
-      "original": {
-        "owner": "glaumar",
-        "repo": "nur",
-        "type": "github"
-      }
-    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -924,7 +904,6 @@
         "chatgpt-nixpkgs": "chatgpt-nixpkgs",
         "doom-config": "doom-config",
         "firefox-addons": "firefox-addons",
-        "glaumar_repo": "glaumar_repo",
         "home-manager": "home-manager",
         "hyprland": "hyprland",
         "neovim": "neovim",
