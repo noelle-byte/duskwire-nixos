@@ -48,7 +48,9 @@ in
     mutableUsers = true;
     users.${username} = {
       isNormalUser = true;
-      initialPassword = "123";
+      # New accounts stay password-locked until installation sets a password.
+      # Existing passwords are preserved because mutableUsers remains enabled.
+      initialHashedPassword = "!";
       extraGroups = [
         "wheel" # sudo access
         "input"

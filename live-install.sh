@@ -4,7 +4,7 @@
 # This script is automatically called from install.sh
 # But you can run it manually too in the NixOS live environment.
 
-set -e
+set -eo pipefail
 
 # Colors for output
 RED='\033[0;31m'
@@ -935,9 +935,12 @@ nixos-install --flake "/mnt/etc/nixos#$selected_host" --no-root-passwd || exit 1
 
 # Set the user password
 echo -e "\n${BLUE}Setting password for $username...${NC}"
-nixos-enter --root /mnt -c "echo '$password' | passwd --stdin $username" || {
-  warn "Failed to set user password. You'll need to set it after booting."
+# The username was validated above; send the password as data, never shell code.
+printf '%s\n' "$password" | nixos-enter --root /mnt -c "passwd --stdin $username" || {
+  error "Failed to set the user password. Resolve this before rebooting; the account remains password-locked."
+  exit 1
 }
+unset password password_confirm
 
 # Create user directories
 info "Creating user directories..."
