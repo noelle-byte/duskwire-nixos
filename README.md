@@ -1,6 +1,6 @@
 # Duskwire
 
-My personal NixOS configuration for a desktop and laptop, built around
+My personal NixOS configuration for two desktops and a laptop, built around
 Hyprland, a dark desktop, gaming, and everyday creative and development work.
 
 Duskwire started from [Sly-Harvey's NixOS configuration](https://github.com/Sly-Harvey/NixOS)
@@ -9,7 +9,7 @@ Home Manager modules to keep the system and user environment together.
 
 ## The desktop
 
-Both published hosts currently select:
+The three host definitions currently select:
 
 - **Hyprland**, with Lua configuration for monitors, keybindings, window rules,
   animations, and desktop behavior.
@@ -22,11 +22,12 @@ Both published hosts currently select:
 - **PipeWire** for audio and **SDDM** with the Astronaut theme for login.
 - British English, a UK keyboard layout, and the Europe/London time zone.
 
-Gaming is enabled on both hosts: Steam with Proton GE, Wine staging, Bottles,
+Gaming is enabled in all three host definitions: Steam with Proton GE, Wine staging, Bottles,
 Gamescope, GameMode, and MangoHud. Host packages also include Obsidian, Godot,
 Proton VPN, GitHub Desktop, and GitHub CLI.
 
-The main desktop enables Syncthing and Jellyfin. The laptop keeps its own
+The shared desktop profile enables Syncthing, Jellyfin, Ollama, LiteLLM,
+and Open WebUI. Nightmares uses CUDA Ollama; Dread uses the ordinary package. The laptop keeps its own
 service selection and enables the Flatpak module. Available modules are not
 necessarily enabled on every host; each host's imports are the source of truth.
 
@@ -36,11 +37,17 @@ necessarily enabled on every host; each host's imports are the source of truth.
 | --- | --- | --- | --- |
 | `DesktopOfNightmares` | Main desktop | NVIDIA | No battery or Bluetooth support selected |
 | `LaptopOfDreams` | Laptop | AMD | Battery and Bluetooth support enabled |
+| `DesktopOfDread` | Second desktop, provisional | Not selected yet | Generated hardware, GPU, and boot method still need confirmation |
 
-**DesktopOfDread is being prepared separately.** It is intended to share the main
-desktop's general configuration and packages while keeping its own hardware
-configuration. Its local setup changes are not included in this documentation
-PR; the two hosts above are the ones exported by the current published flake.
+**DesktopOfDread is exported by the flake but is not ready to install.** Its
+hardware placeholder deliberately blocks system builds. Follow
+[its setup notes](hosts/DesktopOfDread/README.md) on that machine before installing.
+Never generate its hardware file from Nightmares or the laptop.
+
+Both desktops import `modules/profiles/nightmares-desktop.nix` and
+`nightmares-packages.nix`. Edit these for shared services and packages. Each host
+keeps its own variables and hardware settings; Nightmares retains its disk
+mounts, NVIDIA module, kernel override, and CUDA package selection.
 
 ## Finding and changing things
 
@@ -48,10 +55,12 @@ PR; the two hosts above are the ones exported by the current published flake.
 hosts/
   DesktopOfNightmares/
   LaptopOfDreams/
+  DesktopOfDread/
 modules/
   core/                  System services, packages, boot, users, and gaming
   desktop/               Hyprland and alternative desktop modules
   hardware/              GPU drivers and additional drive mounts
+  profiles/              Shared desktop services and host packages
   programs/              Browsers, terminals, editors, and other applications
   scripts/               Rebuild, rollback, and desktop helpers
   themes/                Duskwire and other theme modules
@@ -127,11 +136,13 @@ its partitioning options.
 
 ### Rebuilds and rollback
 
-The installed `rebuild` command selects the host it was built for. It also
-rewrites the username, refreshes the host's hardware configuration from
-`/etc/nixos` or hardware detection, and stages that hardware file before
-rebuilding. Use an explicit `nixos-rebuild` command when you want to control
-those preparatory steps yourself.
+Use the explicit `nixos-rebuild` command above to apply the selected host's
+reviewed configuration. Hardware generation is a separate preparation step, not
+something to run on a different machine on behalf of another host.
+
+The installed `rebuild` helper selects the host it was built for. Its behavior
+comes from the last configuration deployed on that machine; inspect
+`modules/scripts/rebuild.nix` when updating the helper.
 
 To list generations and select one using the included helpers:
 
