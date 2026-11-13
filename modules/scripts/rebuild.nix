@@ -1,5 +1,7 @@
 { host, pkgs, ... }:
 pkgs.writeShellScriptBin "rebuild" ''
+  set -euo pipefail
+
   # Colors for output
   RED='\033[0;31m'
   GREEN='\033[0;32m'
@@ -20,20 +22,7 @@ pkgs.writeShellScriptBin "rebuild" ''
   fi
   echo -e "''${GREEN}Flake: $flake''${NC}"
   echo -e "''${GREEN}Host: ${host}''${NC}"
-  currentUser=$(logname)
-
-  # replace username variable in variables.nix with $USER
-  sudo sed -i -e "s/username = \".*\"/username = \"$currentUser\"/" "$flake/hosts/${host}/variables.nix"
-
-  if [ -f "/etc/nixos/hardware-configuration.nix" ]; then
-    cat "/etc/nixos/hardware-configuration.nix" | sudo tee "$flake/hosts/${host}/hardware-configuration.nix" >/dev/null
-  else
-    sudo nixos-generate-config --show-hardware-config >"$flake/hosts/${host}/hardware-configuration.nix"
-  fi
-
-  sudo git -C "$flake" add hosts/${host}/hardware-configuration.nix
-
-  # nh os switch --hostname "${host}"
+  # Rebuild only the configuration that was explicitly reviewed.
   sudo nixos-rebuild switch --flake "$flake#${host}"
 
   echo
