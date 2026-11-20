@@ -88,7 +88,8 @@ i3, GNOME, and Plasma 6 modules are present as alternative desktops.
 Hyprland configuration lives in `modules/desktop/hyprland/lua/`. Review
 `monitors.lua` when changing displays and `binds.lua` for the actual shortcuts.
 Application configuration lives under `modules/programs/`; desktop theme
-integration is in `modules/themes/duskwire/`.
+integration is in `modules/themes/duskwire/`. Its Twilight palette is shared
+by the minimal Waybar layout, SwayNC, and Kitty.
 
 ## Using this configuration
 

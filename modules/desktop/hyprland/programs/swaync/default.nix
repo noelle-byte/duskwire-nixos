@@ -1,5 +1,6 @@
 { pkgs, ... }:
 let
+  twilight = import ../../../../themes/duskwire/palette.nix;
   gamemode = pkgs.callPackage ../../scripts/gamemode.nix { };
   togglepowermode = pkgs.callPackage ../../scripts/togglepowermode.nix { };
 in
@@ -196,46 +197,39 @@ in
         };
         style = ''
           @define-color shadow rgba(0, 0, 0, 0.25);
-          /*
-          *
-          * Catppuccin Mocha palette
-          * Maintainer: rubyowo
-          *
-          */
+          @define-color base   ${twilight.base};
+          @define-color mantle ${twilight.mantle};
+          @define-color crust  ${twilight.crust};
 
-          @define-color base   #1E1D2E;
-          @define-color mantle #181825;
-          @define-color crust  #11111b;
+          @define-color text     ${twilight.text};
+          @define-color subtext0 ${twilight.subtext0};
+          @define-color subtext1 ${twilight.subtext1};
 
-          @define-color text     #cdd6f4;
-          @define-color subtext0 #a6adc8;
-          @define-color subtext1 #bac2de;
+          @define-color surface0 ${twilight.surface0};
+          @define-color surface1 ${twilight.surface1};
+          @define-color surface2 ${twilight.surface2};
 
-          @define-color surface0 #313244;
-          @define-color surface1 #45475a;
-          @define-color surface2 #585b70;
+          @define-color overlay0 ${twilight.overlay0};
+          @define-color overlay1 ${twilight.overlay1};
+          @define-color overlay2 ${twilight.overlay2};
 
-          @define-color overlay0 #6c7086;
-          @define-color overlay1 #7f849c;
-          @define-color overlay2 #9399b2;
+          @define-color blue      ${twilight.blue};
+          @define-color lavender  ${twilight.lavender};
+          @define-color sapphire  ${twilight.sapphire};
+          @define-color sky       ${twilight.sky};
+          @define-color teal      ${twilight.teal};
+          @define-color green     ${twilight.green};
+          @define-color yellow    ${twilight.yellow};
+          @define-color peach     ${twilight.peach};
+          @define-color maroon    ${twilight.maroon};
+          @define-color red       ${twilight.red};
+          @define-color mauve     ${twilight.mauve};
+          @define-color pink      ${twilight.pink};
+          @define-color flamingo  ${twilight.flamingo};
+          @define-color rosewater ${twilight.rosewater};
 
-          @define-color blue      #89b4fa;
-          @define-color lavender  #b4befe;
-          @define-color sapphire  #74c7ec;
-          @define-color sky       #89dceb;
-          @define-color teal      #94e2d5;
-          @define-color green     #a6e3a1;
-          @define-color yellow    #f9e2af;
-          @define-color peach     #fab387;
-          @define-color maroon    #eba0ac;
-          @define-color red       #f38ba8;
-          @define-color mauve     #cba6f7;
-          @define-color pink      #f5c2e7;
-          @define-color flamingo  #f2cdcd;
-          @define-color rosewater #f5e0dc;
-
-          @define-color base_lighter  #1e1e2e;
-          @define-color mauve_lighter #caa6f7;
+          @define-color base_lighter  ${twilight.base};
+          @define-color mauve_lighter ${twilight.mauve};
 
           * {
             font-family: "JetBrainsMono NFM SemiBold", monospace;
@@ -243,8 +237,8 @@ in
           }
 
           .notification {
-            background: @theme_bg_color;
-            border: 1px solid @theme_selected_bg_color;
+            background: @base;
+            border: 1px solid @surface2;
             border-radius: 8px;
             margin: 6px 0;
           }
@@ -262,7 +256,7 @@ in
           /*** Notification ***/
           /* Notification header */
           .summary {
-            color: @theme_text_color;
+            color: @text;
             font-size: 16px;
             background: transparent;
             text-shadow: none;
@@ -271,7 +265,7 @@ in
 
           .time {
             color: @subtext0;
-            /* color: alpha(@theme_text_color, 0.9); */
+            /* color: alpha(@text, 0.9); */
             font-size: 16px;
             background: transparent;
             font-size: 16px;
@@ -284,21 +278,21 @@ in
             font-size: 15px;
             font-weight: 500;
             color: @subtext1;
-            /* color: alpha(@theme_text_color, 0.9); */
+            /* color: alpha(@text, 0.9); */
             text-shadow: none;
           }
 
           /* The "Notifications" and "Do Not Disturb" text widget */
           .top-action-title {
-            color: @theme_text_color;
-            /* color: @theme_text_color; */
+            color: @text;
+            /* color: @text; */
             text-shadow: none;
           }
 
           .control-center {
-            background: alpha(@theme_bg_color, .80);
+            background: alpha(@base, .80);
             border-radius: 8px;
-            border: 1px solid @theme_selected_bg_color;
+            border: 1px solid @surface2;
           }
 
           .control-center .notification-row:focus,
@@ -327,7 +321,7 @@ in
           .widget-title {
             margin: 0px;
             background: transparent;
-            /* background: @theme_bg_color; */
+            /* background: @base; */
             border-radius: 4px 4px 0px 0px;
             /* border: 1px solid @surface1; */
             border-radius: 8px;
@@ -345,8 +339,8 @@ in
             padding: 7px 3px;
             margin-right: 10px;
             background: transparent;
-            color: @theme_text_color;
-            /* color: @theme_text_color; */
+            color: @text;
+            /* color: @text; */
             border: none;
             /* border: none; */
             border-radius: 4px;
@@ -361,8 +355,8 @@ in
             margin: 0px;
             padding: 0px;
             min-height: 5px;
-            background: alpha(@theme_bg_color, .80);
-            /* background: @theme_bg_color; */
+            background: alpha(@base, .80);
+            /* background: @base; */
             border-radius: 0px 0px 4px 4px;
             /* border: 1px solid @surface1; */
             border-top: none;
@@ -375,7 +369,7 @@ in
           /* Menubar */
           .widget-menubar {
             background: transparent;
-            /* background: @theme_bg_color; */
+            /* background: @base; */
             /* border: 1px solid @surface1; */
             border-radius: 4px;
             border-top: none;
@@ -388,7 +382,7 @@ in
             background: transparent;
           }
           .widget-menubar > box > box > button {
-            background: alpha(@theme_bg_color, .80);
+            background: alpha(@base, .80);
             /* background: alpha(currentColor, 0.05); */
             min-width: 185px;
             min-height: 50px;
@@ -401,14 +395,14 @@ in
             padding-top: 5px;
           }
           .widget-menubar button:hover {
-            background: @theme_selected_bg_color;
+            background: @surface2;
             /* background: alpha(currentColor,0.1); */
             box-shadow: none;
           }
 
           .widget-menubar > box > revealer > box {
             margin: 5px 10px 5px 10px;
-            background: alpha(@theme_bg_color, .80);
+            background: alpha(@base, .80);
             /* background: alpha(currentColor, 0.05); */
             border-radius: 4px;
           }
@@ -421,7 +415,7 @@ in
 
           /* Buttons grid */
           .widget-buttons-grid {
-            /* background-color: @theme_bg_color; */
+            /* background-color: @base; */
             background: transparent;
             /* border: 1px solid @surface1; */
             border-top: none;
@@ -434,7 +428,7 @@ in
           }
 
           .widget-buttons-grid > flowbox > flowboxchild {
-            background: @theme_bg_color;
+            background: @base;
             /* background: alpha(currentColor, 0.05); */
             border-radius: 4px;
             min-height: 40px;
@@ -453,7 +447,7 @@ in
 
 
           .widget-buttons-grid > flowbox > flowboxchild > button:hover {
-            background: @theme_selected_bg_color;
+            background: @surface2;
             /* background: alpha(currentColor, 0.1); */
           }
 
@@ -477,7 +471,7 @@ in
           .widget-backlight,
           .widget-volume {
             background: transparent;
-            /* background-color: @theme_bg_color; */
+            /* background-color: @base; */
             border-top: none;
             border-bottom: none;
             font-size: 13px;
@@ -487,7 +481,7 @@ in
             padding: 0px;
           }
           .widget-volume > box {
-            background: alpha(@theme_bg_color, .80);
+            background: alpha(@base, .80);
             /* background: alpha(currentColor, 0.05); */
             border-radius: 4px;
             margin: 5px 10px 5px 10px;
@@ -507,7 +501,7 @@ in
             background: @surface0;
           }
           .widget-volume > revealer > list {
-            background: alpha(@theme_bg_color, .80);
+            background: alpha(@base, .80);
             /* background: alpha(currentColor, 0.05); */
             border-radius: 4px;
             margin-top: 5px;
@@ -524,7 +518,7 @@ in
             border-radius: 4px;
           }
           .widget-backlight > scale {
-            background: alpha(@theme_bg_color, .80);
+            background: alpha(@base, .80);
             /* background: alpha(currentColor, 0.05); */
             border-radius: 0px 4px 4px 0px;
             margin: 5px 10px 5px 0px;
@@ -549,7 +543,7 @@ in
           }
 
           .widget-dnd > switch {
-            background: alpha(@theme_bg_color, .80);
+            background: alpha(@base, .80);
             font-size: initial;
             border-radius: 8px;
             box-shadow: none;
@@ -557,33 +551,33 @@ in
           }
 
           .widget-dnd > switch:hover {
-            background: alpha(@theme_selected_bg_color, .80);
+            background: alpha(@surface2, .80);
           }
 
           .widget-dnd > switch:checked {
-            background: @theme_fg_color;
+            background: @text;
           }
 
           .widget-dnd > switch:checked:hover {
-            background: alpha(@theme_fg_color, .80);
+            background: alpha(@text, .80);
           }
 
           .widget-dnd > switch slider {
-            background: alpha(@theme_selected_bg_color, .80);
+            background: alpha(@surface2, .80);
             border-radius: 6px;
           }
 
           /* Toggles */
           .toggle:checked {
             background: @surface1;
-            /* background: @theme_selected_bg_color; */
+            /* background: @surface2; */
           }
           /*.toggle:not(:checked) {
             color: rgba(128, 128, 128, 0.5);
           }*/
           .toggle:checked:hover {
             background: @surface2;
-            /* background: alpha(@theme_selected_bg_color, 0.75); */
+            /* background: alpha(@surface2, 0.75); */
           }
 
           scale trough {
@@ -593,7 +587,7 @@ in
           }
 
           scale slider {
-            background: @theme_fg_color;
+            background: @text;
           }
           scale slider:hover {
           }
