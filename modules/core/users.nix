@@ -34,8 +34,8 @@ in
           EDITOR =
             if (editor == "nixvim" || editor == "neovim" || editor == "nvchad") then
               "nvim"
-            else if editor == "vscode" then
-              "code"
+            else if editor == "vscodium" then
+              "codium --wait"
             else
               "nano";
           BROWSER = "${browser}";

@@ -17,7 +17,7 @@ The three host definitions currently select:
   **Hypridle**, and **wlogout**.
 - The **Duskwire theme module**, currently using Catppuccin Mocha with a red
   accent for GTK and Kvantum, alongside Papirus-Dark icons and a Duskwire wallpaper.
-- **Kitty**, **Zsh**, **Firefox**, **VS Code**, and **Thunar** as the selected
+- **Kitty**, **Zsh**, **Firefox**, **VSCodium**, and **Thunar** as the selected
   terminal, shell, browser, editor, and file manager.
 - **PipeWire** for audio and **SDDM** with the Astronaut theme for login.
 - British English, a UK keyboard layout, and the Europe/London time zone.
