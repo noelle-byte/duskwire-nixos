@@ -126,10 +126,6 @@ hl.window_rule({
 	opacity = "0.80 0.70",
 })
 hl.window_rule({
-	match = { class = "^(code|code-url-handler)$" },
-	opacity = "0.80 0.70",
-})
-hl.window_rule({
 	match = { class = "^(fileManager)$" },
 	opacity = "0.80 0.70",
 })
