@@ -29,12 +29,12 @@
           enabledExtensions = with spicePkgs.extensions; [
             adblock
             shuffle # shuffle+ (special characters are sanitized out of ext names)
-            keyboardShortcut # vimium-like navigation
+            # keyboardShortcut # vimium-like navigation
             copyLyrics # copy lyrics with selection
             # autoVolume
-            # showQueueDuration
+            showQueueDuration
             # fullAppDisplay
-            # hidePodcasts
+            hidePodcasts
           ];
           # enabledCustomApps = with spicePkgs.apps; [
           #   reddit

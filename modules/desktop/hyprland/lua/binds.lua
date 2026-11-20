@@ -1,113 +1,135 @@
 -- ============================================================================
+-- Bind helper
+-- ============================================================================
+
+local function bind(keys, dispatcher, description, options)
+    options = options or {}
+    options.description = description
+    hl.bind(keys, dispatcher, options)
+end
+
+
+-- ============================================================================
 -- Window controls
 -- ============================================================================
 
 -- Move focus
-hl.bind(mainMod .. " + h", hl.dsp.focus({ direction = "l" }))
-hl.bind(mainMod .. " + j", hl.dsp.focus({ direction = "d" }))
-hl.bind(mainMod .. " + k", hl.dsp.focus({ direction = "u" }))
-hl.bind(mainMod .. " + l", hl.dsp.focus({ direction = "r" }))
+bind(mainMod .. " + h", hl.dsp.focus({ direction = "l" }), "Focus window left")
+bind(mainMod .. " + j", hl.dsp.focus({ direction = "d" }), "Focus window down")
+bind(mainMod .. " + k", hl.dsp.focus({ direction = "u" }), "Focus window up")
+bind(mainMod .. " + l", hl.dsp.focus({ direction = "r" }), "Focus window right")
 
 -- Move window
-hl.bind(mainMod .. " + SHIFT + h", hl.dsp.window.move({ direction = "l" }))
-hl.bind(mainMod .. " + SHIFT + j", hl.dsp.window.move({ direction = "d" }))
-hl.bind(mainMod .. " + SHIFT + k", hl.dsp.window.move({ direction = "u" }))
-hl.bind(mainMod .. " + SHIFT + l", hl.dsp.window.move({ direction = "r" }))
+bind(mainMod .. " + SHIFT + h", hl.dsp.window.move({ direction = "l" }), "Move window left")
+bind(mainMod .. " + SHIFT + j", hl.dsp.window.move({ direction = "d" }), "Move window down")
+bind(mainMod .. " + SHIFT + k", hl.dsp.window.move({ direction = "u" }), "Move window up")
+bind(mainMod .. " + SHIFT + l", hl.dsp.window.move({ direction = "r" }), "Move window right")
 
 -- Resize window
-hl.bind(
+bind(
     mainMod .. " + CTRL + h",
     hl.dsp.window.resize({ x = -30, y = 0 }),
+    "Shrink window horizontally",
     { repeating = true }
 )
 
-hl.bind(
+bind(
     mainMod .. " + CTRL + j",
     hl.dsp.window.resize({ x = 0, y = 30 }),
+    "Grow window downward",
     { repeating = true }
 )
 
-hl.bind(
+bind(
     mainMod .. " + CTRL + k",
     hl.dsp.window.resize({ x = 0, y = -30 }),
+    "Shrink window vertically",
     { repeating = true }
 )
 
-hl.bind(
+bind(
     mainMod .. " + CTRL + l",
     hl.dsp.window.resize({ x = 30, y = 0 }),
+    "Grow window horizontally",
     { repeating = true }
 )
 
 -- Mouse move / resize
-hl.bind(
+bind(
     mainMod .. " + mouse:272",
     hl.dsp.window.drag(),
+    "Move window with mouse",
     { mouse = true }
 )
 
-hl.bind(
+bind(
     mainMod .. " + mouse:273",
     hl.dsp.window.resize(),
+    "Resize window with mouse",
     { mouse = true }
 )
 
 -- Window state
-hl.bind(mainMod .. " + Q", hl.dsp.window.close())
-hl.bind("ALT + F4", hl.dsp.window.kill())
-hl.bind(mainMod .. " + W", hl.dsp.window.float({ action = "toggle" }))
-hl.bind(mainMod .. " + SHIFT + G", hl.dsp.group.toggle())
-hl.bind("ALT + return", hl.dsp.window.fullscreen())
+bind(mainMod .. " + Q", hl.dsp.window.close(), "Close active window")
+bind("ALT + F4", hl.dsp.window.kill(), "Force-kill active window")
+bind(mainMod .. " + W", hl.dsp.window.float({ action = "toggle" }), "Toggle floating window")
+bind(mainMod .. " + SHIFT + G", hl.dsp.group.toggle(), "Toggle window group")
+bind("ALT + return", hl.dsp.window.fullscreen(), "Toggle fullscreen")
 
 
 -- ============================================================================
 -- Hardware / media keys
 -- ============================================================================
 
-hl.bind(
+bind(
     "XF86MonBrightnessDown",
     hl.dsp.exec_cmd("brightnessctl set 2%-"),
+    "Decrease screen brightness",
     { repeating = true }
 )
 
-hl.bind(
+bind(
     "XF86MonBrightnessUp",
     hl.dsp.exec_cmd("brightnessctl set +2%"),
+    "Increase screen brightness",
     { repeating = true }
 )
 
-hl.bind(
+bind(
     "XF86AudioLowerVolume",
     hl.dsp.exec_cmd("pamixer -d 2"),
+    "Lower volume",
     { repeating = true }
 )
 
-hl.bind(
+bind(
     "XF86AudioRaiseVolume",
     hl.dsp.exec_cmd("pamixer -i 2"),
+    "Raise volume",
     { repeating = true }
 )
 
-hl.bind("xf86Sleep", hl.dsp.exec_cmd("systemctl suspend"))
-hl.bind("XF86AudioMicMute", hl.dsp.exec_cmd("pamixer --default-source -t"))
-hl.bind("XF86AudioMute", hl.dsp.exec_cmd("pamixer -t"))
-hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"))
-hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"))
-hl.bind("xf86AudioNext", hl.dsp.exec_cmd("playerctl next"))
-hl.bind("xf86AudioPrev", hl.dsp.exec_cmd("playerctl previous"))
+bind("xf86Sleep", hl.dsp.exec_cmd("systemctl suspend"), "Suspend system")
+bind("XF86AudioMicMute", hl.dsp.exec_cmd("pamixer --default-source -t"), "Toggle microphone mute")
+bind("XF86AudioMute", hl.dsp.exec_cmd("pamixer -t"), "Toggle audio mute")
+bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"), "Play or pause media")
+bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"), "Play or pause media")
+bind("xf86AudioNext", hl.dsp.exec_cmd("playerctl next"), "Next media track")
+bind("xf86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), "Previous media track")
 
 
 -- ============================================================================
 -- Application shortcuts
 -- ============================================================================
 
-hl.bind(mainMod .. " + Return", hl.dsp.exec_cmd(term))
-hl.bind(
+bind(mainMod .. " + Return", hl.dsp.exec_cmd(term), "Launch terminal")
+bind(
     mainMod .. " + E",
-    hl.dsp.exec_cmd(fileManagerScript .. " " .. fileManager)
+    hl.dsp.exec_cmd(fileManagerScript .. " " .. fileManager),
+    "Launch file manager"
 )
-hl.bind(mainMod .. " + C", hl.dsp.exec_cmd(editor))
-hl.bind(mainMod .. " + F", hl.dsp.exec_cmd(browser))
+bind(mainMod .. " + C", hl.dsp.exec_cmd(editor), "Launch editor")
+bind(mainMod .. " + F", hl.dsp.exec_cmd(browser), "Launch browser")
 
 
 -- ============================================================================
@@ -115,60 +137,70 @@ hl.bind(mainMod .. " + F", hl.dsp.exec_cmd(browser))
 -- ============================================================================
 
 -- Main launcher
-hl.bind(
+bind(
     mainMod .. " + SPACE",
-    hl.dsp.exec_cmd(launcher .. " drun")
+    hl.dsp.exec_cmd(launcher .. " drun"),
+    "Open application launcher"
 )
 
 -- Launcher modes
-hl.bind(
+bind(
     mainMod .. " + SHIFT + W",
-    hl.dsp.exec_cmd(launcher .. " wallpaper")
+    hl.dsp.exec_cmd(launcher .. " wallpaper"),
+    "Open wallpaper picker"
 )
 
-hl.bind(
+bind(
     mainMod .. " + Z",
-    hl.dsp.exec_cmd(launcher .. " emoji")
+    hl.dsp.exec_cmd(launcher .. " emoji"),
+    "Open emoji picker"
 )
 
-hl.bind(
+bind(
     mainMod .. " + SHIFT + T",
-    hl.dsp.exec_cmd(launcher .. " tmux")
+    hl.dsp.exec_cmd(launcher .. " tmux"),
+    "Open tmux session picker"
 )
 
-hl.bind(
+bind(
     mainMod .. " + G",
-    hl.dsp.exec_cmd(launcher .. " games")
+    hl.dsp.exec_cmd(launcher .. " games"),
+    "Open game launcher"
 )
 
 -- Panels / desktop utilities
-hl.bind(
+bind(
     mainMod .. " + SHIFT + A",
     hl.dsp.exec_cmd(
         "noctalia msg panel-toggle control-center audio || pavucontrol"
-    )
+    ),
+    "Open audio controls"
 )
 
-hl.bind(
+bind(
     mainMod .. " + SHIFT + M",
     hl.dsp.exec_cmd(
         "noctalia msg panel-toggle control-center media"
-    )
+    ),
+    "Open media controls"
 )
 
-hl.bind(
+bind(
     mainMod .. " + SHIFT + N",
-    hl.dsp.exec_cmd("swaync-client -t -sw")
+    hl.dsp.exec_cmd("swaync-client -t -sw"),
+    "Toggle notification panel"
 )
 
-hl.bind(
+bind(
     mainMod .. " + ALT + G",
-    hl.dsp.exec_cmd(gamemode)
+    hl.dsp.exec_cmd(gamemode),
+    "Toggle game mode"
 )
 
-hl.bind(
+bind(
     mainMod .. " + V",
-    hl.dsp.exec_cmd(clipmanager)
+    hl.dsp.exec_cmd(clipmanager),
+    "Open clipboard manager"
 )
 
 
@@ -176,35 +208,39 @@ hl.bind(
 -- System utilities
 -- ============================================================================
 
-hl.bind(
+bind(
     "CONTROL + ALT + DELETE",
-    hl.dsp.exec_cmd(term .. " -e btop")
+    hl.dsp.exec_cmd(term .. " -e btop"),
+    "Open system monitor"
 )
 
-hl.bind(
+bind(
     "CONTROL + ALT + M",
     hl.dsp.exec_cmd(
         term .. ' --class "microfetch" --hold -e microfetch'
-    )
+    ),
+    "Show system information"
 )
 
-hl.bind(
+bind(
     mainMod .. " + CTRL + C",
-    hl.dsp.exec_cmd("hyprpicker --autocopy --format=hex")
+    hl.dsp.exec_cmd("hyprpicker --autocopy --format=hex"),
+    "Pick colour from screen"
 )
 
 -- Keybind help
-hl.bind(mainMod .. " + question", hl.dsp.exec_cmd(keybinds_yad))
-hl.bind(mainMod .. " + slash", hl.dsp.exec_cmd(keybinds_yad))
+bind(mainMod .. " + question", hl.dsp.exec_cmd(keybinds_yad), "Show keybind help")
+bind(mainMod .. " + slash", hl.dsp.exec_cmd(keybinds_yad), "Show keybind help")
 
 -- Auto-clicker
-hl.bind(
+bind(
     mainMod .. " + F8",
     hl.dsp.exec_cmd(
         "kill $(cat /tmp/auto-clicker.pid) 2>/dev/null || "
             .. autoclicker
             .. " --cps 40"
-    )
+    ),
+    "Toggle auto-clicker"
 )
 
 
@@ -213,14 +249,16 @@ hl.bind(
 -- ============================================================================
 
 -- Lower temperatures are warmer: 3500, 3000, 2500
-hl.bind(
+bind(
     mainMod .. " + F9",
-    hl.dsp.exec_cmd("hyprsunset --temperature 2500")
+    hl.dsp.exec_cmd("hyprsunset --temperature 2500"),
+    "Enable night mode"
 )
 
-hl.bind(
+bind(
     mainMod .. " + F10",
-    hl.dsp.exec_cmd("pkill hyprsunset")
+    hl.dsp.exec_cmd("pkill hyprsunset"),
+    "Disable night mode"
 )
 
 
@@ -228,35 +266,40 @@ hl.bind(
 -- Session actions
 -- ============================================================================
 
-hl.bind(
+bind(
     mainMod .. " + ALT + L",
-    hl.dsp.exec_cmd("noctalia msg session lock || hyprlock")
+    hl.dsp.exec_cmd("noctalia msg session lock || hyprlock"),
+    "Lock session"
 )
 
-hl.bind(
+bind(
     mainMod .. " + backspace",
     hl.dsp.exec_cmd(
         "noctalia msg panel-toggle session || pkill -x wlogout || wlogout -b 4"
-    )
+    ),
+    "Open session menu"
 )
 
 -- Toggle bar
-hl.bind(
+bind(
     "CONTROL + ESCAPE",
     hl.dsp.exec_cmd(
         'pkill "waybar|noctalia|wayle|.quickshell" || ' .. bar
-    )
+    ),
+    "Toggle desktop bar"
 )
 
 -- Zoom
-hl.bind(
+bind(
     mainMod .. " + CTRL + mouse_down",
-    hl.dsp.exec_cmd(zoom .. " in")
+    hl.dsp.exec_cmd(zoom .. " in"),
+    "Zoom in"
 )
 
-hl.bind(
+bind(
     mainMod .. " + CTRL + mouse_up",
-    hl.dsp.exec_cmd(zoom .. " out")
+    hl.dsp.exec_cmd(zoom .. " out"),
+    "Zoom out"
 )
 
 
@@ -264,34 +307,40 @@ hl.bind(
 -- Screenshots / screen recording
 -- ============================================================================
 
-hl.bind(
+bind(
     mainMod .. " + SHIFT + R",
-    hl.dsp.exec_cmd(screen_record .. " a")
+    hl.dsp.exec_cmd(screen_record .. " a"),
+    "Record selected area"
 )
 
-hl.bind(
+bind(
     mainMod .. " + CTRL + R",
-    hl.dsp.exec_cmd(screen_record .. " m")
+    hl.dsp.exec_cmd(screen_record .. " m"),
+    "Record current monitor"
 )
 
-hl.bind(
+bind(
     mainMod .. " + P",
-    hl.dsp.exec_cmd(screenshot .. " s")
+    hl.dsp.exec_cmd(screenshot .. " s"),
+    "Screenshot selected area"
 )
 
-hl.bind(
+bind(
     mainMod .. " + CTRL + P",
-    hl.dsp.exec_cmd(screenshot .. " sf")
+    hl.dsp.exec_cmd(screenshot .. " sf"),
+    "Screenshot frozen screen"
 )
 
-hl.bind(
+bind(
     mainMod .. " + print",
-    hl.dsp.exec_cmd(screenshot .. " m")
+    hl.dsp.exec_cmd(screenshot .. " m"),
+    "Screenshot current monitor"
 )
 
-hl.bind(
+bind(
     mainMod .. " + ALT + P",
-    hl.dsp.exec_cmd(screenshot .. " p")
+    hl.dsp.exec_cmd(screenshot .. " p"),
+    "Screenshot all monitors"
 )
 
 
@@ -300,74 +349,87 @@ hl.bind(
 -- ============================================================================
 
 -- Cycle floating windows
-hl.bind(
+bind(
     mainMod .. " + Tab",
-    hl.dsp.window.cycle_next()
+    hl.dsp.window.cycle_next(),
+    "Cycle to next window"
 )
 
-hl.bind(
+bind(
     mainMod .. " + Tab",
-    hl.dsp.exec_cmd("hyprctl dispatch bringactivetotop")
+    hl.dsp.exec_cmd("hyprctl dispatch bringactivetotop"),
+    "Raise active window"
 )
 
 -- Switch relative to the active workspace
-hl.bind(
+bind(
     mainMod .. " + CTRL + right",
-    hl.dsp.focus({ workspace = "r+1" })
+    hl.dsp.focus({ workspace = "r+1" }),
+    "Switch to next workspace"
 )
 
-hl.bind(
+bind(
     mainMod .. " + CTRL + left",
-    hl.dsp.focus({ workspace = "r-1" })
+    hl.dsp.focus({ workspace = "r-1" }),
+    "Switch to previous workspace"
 )
 
 -- Jump to the first empty workspace
-hl.bind(
+bind(
     mainMod .. " + CTRL + down",
-    hl.dsp.focus({ workspace = "empty" })
+    hl.dsp.focus({ workspace = "empty" }),
+    "Switch to first empty workspace"
 )
 
 -- Scroll through existing workspaces
-hl.bind(
+bind(
     mainMod .. " + mouse_down",
-    hl.dsp.focus({ workspace = "e+1" })
+    hl.dsp.focus({ workspace = "e+1" }),
+    "Scroll to next existing workspace"
 )
 
-hl.bind(
+bind(
     mainMod .. " + mouse_up",
-    hl.dsp.focus({ workspace = "e-1" })
+    hl.dsp.focus({ workspace = "e-1" }),
+    "Scroll to previous existing workspace"
 )
 
 -- Move active window to a relative workspace
-hl.bind(
+bind(
     mainMod .. " + CTRL + ALT + right",
-    hl.dsp.window.move({ workspace = "r+1" })
+    hl.dsp.window.move({ workspace = "r+1" }),
+    "Move window to next workspace"
 )
 
-hl.bind(
+bind(
     mainMod .. " + CTRL + ALT + left",
-    hl.dsp.window.move({ workspace = "r-1" })
+    hl.dsp.window.move({ workspace = "r-1" }),
+    "Move window to previous workspace"
 )
 
 -- Arrow-key window movement within the current workspace
-hl.bind(
+bind(
     mainMod .. " + SHIFT + CTRL + left",
-    hl.dsp.window.move({ direction = "l" })
+    hl.dsp.window.move({ direction = "l" }),
+    "Move window left"
 )
 
-hl.bind(
+bind(
     mainMod .. " + SHIFT + CTRL + right",
-    hl.dsp.window.move({ direction = "r" })
+    hl.dsp.window.move({ direction = "r" }),
+    "Move window right"
 )
 
-hl.bind(
+bind(
     mainMod .. " + SHIFT + CTRL + up",
-    hl.dsp.window.move({ direction = "u" })
+    hl.dsp.window.move({ direction = "u" }),
+    "Move window up"
 )
 
-hl.bind(
+bind(
     mainMod .. " + SHIFT + CTRL + down",
-    hl.dsp.window.move({ direction = "d" })
+    hl.dsp.window.move({ direction = "d" }),
+    "Move window down"
 )
 
 
@@ -376,18 +438,20 @@ hl.bind(
 -- ============================================================================
 
 -- Show / hide scratchpad
-hl.bind(
+bind(
     mainMod .. " + S",
-    hl.dsp.workspace.toggle_special("special")
+    hl.dsp.workspace.toggle_special("special"),
+    "Toggle scratchpad"
 )
 
 -- Send active window to scratchpad without following
-hl.bind(
+bind(
     mainMod .. " + SHIFT + S",
     hl.dsp.window.move({
         workspace = "special",
         follow = false,
-    })
+    }),
+    "Send window to scratchpad"
 )
 
 
@@ -395,14 +459,16 @@ hl.bind(
 -- Scrolling layout
 -- ============================================================================
 
-hl.bind(
+bind(
     mainMod .. " + period",
-    hl.dsp.exec_cmd("hyprctl dispatch layoutmsg move +col")
+    hl.dsp.exec_cmd("hyprctl dispatch layoutmsg move +col"),
+    "Move to next scrolling column"
 )
 
-hl.bind(
+bind(
     mainMod .. " + comma",
-    hl.dsp.exec_cmd("hyprctl dispatch layoutmsg move -col")
+    hl.dsp.exec_cmd("hyprctl dispatch layoutmsg move -col"),
+    "Move to previous scrolling column"
 )
 
 
@@ -410,9 +476,10 @@ hl.bind(
 -- NixOS rebuild
 -- ============================================================================
 
-hl.bind(
+bind(
     mainMod .. " + U",
-    hl.dsp.exec_cmd(term .. " -e rebuild")
+    hl.dsp.exec_cmd(term .. " -e rebuild"),
+    "Rebuild NixOS"
 )
 
 
@@ -424,23 +491,26 @@ for i = 1, 10 do
     local key = i % 10
 
     -- Focus workspace
-    hl.bind(
+    bind(
         mainMod .. " + " .. key,
-        hl.dsp.focus({ workspace = i })
+        hl.dsp.focus({ workspace = i }),
+        "Focus workspace " .. i
     )
 
     -- Move window to workspace and follow
-    hl.bind(
+    bind(
         mainMod .. " + SHIFT + " .. key,
-        hl.dsp.window.move({ workspace = i })
+        hl.dsp.window.move({ workspace = i }),
+        "Move window to workspace " .. i
     )
 
     -- Move window without following
-    hl.bind(
+    bind(
         mainMod .. " + CTRL + " .. key,
         hl.dsp.window.move({
             workspace = i,
             follow = false,
-        })
+        }),
+        "Send window to workspace " .. i
     )
 end

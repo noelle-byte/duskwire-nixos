@@ -48,7 +48,7 @@
     # libsForQt5.qt5.qtgraphicaleffects # Sddm Dependency (Old)
     # libnotify # For Notifications
     # lolcat # Add Colors To Your Terminal Command Output
-    # lshw # Detailed Hardware Information
+    lshw # Detailed Hardware Information
     mpv # Incredible Video Player
     # ncdu # Disk Usage Analyzer With Ncurses Interface
     # nixfmt-rfc-style # Nix Formatter
@@ -60,15 +60,15 @@
     # pkg-config # Wrapper Script For Allowing Packages To Get Info On Others
     # rhythmbox # audio player
     # socat # Needed For Screenshots
-    # usbutils # Good Tools For USB Devices
+    usbutils # Good Tools For USB Devices
     # uwsm # Universal Wayland Session Manager (optional must be enabled)
-    # v4l-utils # Used For Things Like OBS Virtual Camera
+    v4l-utils # Used For Things Like OBS Virtual Camera
     # warp-terminal # Terminal with AI support build in
     # waypaper # Change wallpaper
-    # wget # Tool For Fetching Files With Links
-    # ytmdl # Tool For Downloading Audio From YouTube
+    wget # Tool For Fetching Files With Links
+    ytmdl # Tool For Downloading Audio From YouTube
 
-
+    thunderbird
     qbittorrent
     audacity
     winetricks
@@ -78,5 +78,8 @@
     krita
     firefox
     vesktop
+    tor-browser
+    nmgui
+    yazi
   ];
 }
