@@ -81,5 +81,6 @@
     tor-browser
     nmgui
     yazi
+    gparted
   ];
 }
