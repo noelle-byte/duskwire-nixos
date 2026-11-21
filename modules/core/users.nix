@@ -67,7 +67,6 @@ in
         "vboxusers" # Virtual Box
       ];
       shell = pkgs.${shell};
-      ignoreShellProgramCheck = true;
     };
   };
   nix.settings.allowed-users = [ "${username}" ];

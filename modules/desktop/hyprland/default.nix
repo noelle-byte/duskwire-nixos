@@ -40,19 +40,6 @@ in
     btop
   ];
 
-  systemd.user.services.hyprpolkitagent = {
-    description = "Hyprpolkitagent - Polkit authentication agent";
-    wantedBy = [ "graphical-session.target" ];
-    wants = [ "graphical-session.target" ];
-    after = [ "graphical-session.target" ];
-    serviceConfig = {
-      Type = "simple";
-      ExecStart = "${pkgs.hyprpolkitagent}/libexec/hyprpolkitagent";
-      Restart = "on-failure";
-      RestartSec = 1;
-      TimeoutStopSec = 10;
-    };
-  };
   services.displayManager.defaultSession = "hyprland";
 
   programs.hyprland = {
@@ -82,6 +69,9 @@ in
           "org.freedesktop.impl.portal.Print" = "gtk";
         };
       };
+
+      # Session services
+      services.hyprpolkitagent.enable = true;
 
       # Set wallpaper
       services.awww.enable = true;
