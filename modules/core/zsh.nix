@@ -4,6 +4,9 @@
   ...
 }:
 {
+  # Register zsh system-wide so it is a valid login shell in /etc/shells.
+  programs.zsh.enable = true;
+
   home-manager.sharedModules = [
     (
       { config, ... }:
