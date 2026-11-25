@@ -28,7 +28,11 @@ Proton VPN, GitHub Desktop, and GitHub CLI.
 
 The shared desktop profile enables Syncthing, Jellyfin, Ollama, LiteLLM,
 and Open WebUI. Nightmares uses CUDA Ollama; Dread uses the ordinary package. The laptop keeps its own
-service selection and enables the Flatpak module. Available modules are not
+service selection and enables the Flatpak module.
+The laptop also includes a locally pinned snapshot of Athena OS's **Student** cybersecurity
+package role via `hosts/LaptopOfDreams/athena-student-packages.nix`, imported from its
+`host-packages.nix`. This adds tools without importing Athena's desktop or system settings;
+update the package list intentionally when reviewing upstream changes. Available modules are not
 necessarily enabled on every host; each host's imports are the source of truth.
 
 ## Hosts
