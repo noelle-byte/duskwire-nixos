@@ -33,6 +33,22 @@
         "type": "github"
       }
     },
+    "athena-nix": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1792341250,
+        "narHash": "sha256-ZQpNNerrOSfX7I5ac8xfpxz4FUmwX/mxP6uNVJQ++cs=",
+        "owner": "Athena-OS",
+        "repo": "athena-nix",
+        "rev": "781c77432ced2882cff1f8c5b899804096ae852d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Athena-OS",
+        "repo": "athena-nix",
+        "type": "github"
+      }
+    },
     "betterfox": {
       "flake": false,
       "locked": {
@@ -900,6 +916,7 @@
     },
     "root": {
       "inputs": {
+        "athena-nix": "athena-nix",
         "betterfox": "betterfox",
         "chatgpt-nixpkgs": "chatgpt-nixpkgs",
         "doom-config": "doom-config",

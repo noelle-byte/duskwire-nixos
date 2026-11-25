@@ -5,6 +5,17 @@ let
     system = pkgs.stdenv.hostPlatform.system;
     config.allowUnfree = true;
   };
+  athenaStudentPkgs = import
+    "${inputs.athena-nix}/nixos/modules/cyber/roles/student.nix"
+    { inherit pkgs; };
+  
+  analysisPkgs = with pkgs; [
+    binwalk
+    ghidra
+    radare2
+    nasm
+    wireshark
+  ];
 in
 {
   environment.systemPackages =
@@ -20,5 +31,6 @@ in
     ])
     ++ [
       chatgptPkgs.chatgpt
-    ];
+    ]
+    ++ analysisPkgs;
 }

@@ -9,6 +9,11 @@
 
     chatgpt-nixpkgs.url = "github:Moraxyc/nixpkgs/chatgpt-linux";
     
+    athena-nix = {
+      url = "github:Athena-OS/athena-nix";
+      flake = false;
+    };
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
