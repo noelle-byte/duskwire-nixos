@@ -5,7 +5,15 @@ let
     system = pkgs.stdenv.hostPlatform.system;
     config.allowUnfree = true;
   };
-
+  
+  analysisPkgs = with pkgs; [
+    binwalk
+    ghidra
+    radare2
+    nasm
+    wireshark
+  ];
+  
   in
 {
   environment.systemPackages =
@@ -21,5 +29,6 @@ let
     ])
     ++ [
       chatgptPkgs.chatgpt
-    ];
+    ]
+    ++ analysisPkgs;
 }

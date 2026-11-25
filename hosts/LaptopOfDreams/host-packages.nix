@@ -5,9 +5,6 @@ let
     system = pkgs.stdenv.hostPlatform.system;
     config.allowUnfree = true;
   };
-  athenaStudentPkgs = import
-    "${inputs.athena-nix}/nixos/modules/cyber/roles/student.nix"
-    { inherit pkgs; };
   
   analysisPkgs = with pkgs; [
     binwalk
@@ -16,7 +13,8 @@ let
     nasm
     wireshark
   ];
-in
+  
+  in
 {
   environment.systemPackages =
     (with pkgs; [
