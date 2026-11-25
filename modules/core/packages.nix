@@ -82,5 +82,6 @@
     nmgui
     yazi
     gparted
+    qflipper
   ];
 }
