@@ -15,7 +15,8 @@ in
       proton-vpn
       github-desktop
       gh
-      # pokego # Overlayed
+      yetris
+      
     ])
     ++ [
       chatgptPkgs.chatgpt
