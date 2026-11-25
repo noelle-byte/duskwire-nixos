@@ -5,6 +5,7 @@ let
     system = pkgs.stdenv.hostPlatform.system;
     config.allowUnfree = true;
   };
+  athenaStudentPkgs = import ./athena-student-packages.nix { inherit pkgs; };
 in
 {
   environment.systemPackages =
@@ -20,5 +21,6 @@ in
     ])
     ++ [
       chatgptPkgs.chatgpt
-    ];
+    ]
+    ++ athenaStudentPkgs;
 }
