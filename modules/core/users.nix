@@ -65,6 +65,7 @@ in
         "lp"
         "scanner"
         "vboxusers" # Virtual Box
+        "dialout"
       ];
       shell = pkgs.${shell};
     };
