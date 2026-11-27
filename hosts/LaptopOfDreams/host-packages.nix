@@ -25,6 +25,7 @@ let
       github-desktop
       gh
       yetris
+      kdePackages.kdenlive
       
     ])
     ++ [
